@@ -1,0 +1,212 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── Google Fonts fallback inline ─────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=JetBrains+Mono:wght@400;500&display=swap');
+
+/* ── Variables de tipografía (controladas por ConfigContext) ─────────── */
+:root {
+  --font-display: "Orbitron", monospace;
+  --font-body:    "DM Sans", sans-serif;
+}
+
+/* ── CSS Variables — Dark Mode (default) ─────────────────────────────── */
+:root {
+  --bg-base:      #080A0F;
+  --bg-surface:   #0D0F14;
+  --bg-card:      #131620;
+  --bg-card-hover:#161A22;
+  --bg-elevated:  #1C2130;
+  --border:       rgba(255,255,255,0.06);
+  --border-accent:rgba(0,229,255,0.3);
+
+  --text-primary:   #F0F4FF;
+  --text-secondary: #8B98B8;
+  --text-muted:     #4B5675;
+
+  --accent-cyan:    #00E5FF;
+  --accent-cyan-dim:#00B8CC;
+  --accent-ember:   #FF6B35;
+
+  --gap-low:  #22C55E;
+  --gap-mid:  #F59E0B;
+  --gap-high: #EF4444;
+
+  --shadow-card: 0 4px 24px rgba(0,0,0,0.45);
+  --shadow-hover: 0 8px 40px rgba(0,0,0,0.65);
+  --glow-cyan: 0 0 20px rgba(0,229,255,0.22), 0 0 60px rgba(0,229,255,0.06);
+}
+
+/* ── CSS Variables — Light Mode ───────────────────────────────────────── */
+.light {
+  --bg-base:      #EEF1F7;
+  --bg-surface:   #F4F6FA;
+  --bg-card:      #FFFFFF;
+  --bg-card-hover:#F8FAFF;
+  --bg-elevated:  #FFFFFF;
+  --border:       rgba(0,0,0,0.08);
+  --border-accent:rgba(0,150,180,0.35);
+
+  --text-primary:   #1A1D27;
+  --text-secondary: #4B5675;
+  --text-muted:     #9AA3B8;
+
+  --accent-cyan:    #0099BB;
+  --accent-cyan-dim:#007A99;
+  --accent-ember:   #E05520;
+
+  --shadow-card: 0 2px 12px rgba(0,0,0,0.1);
+  --shadow-hover: 0 6px 28px rgba(0,0,0,0.18);
+  --glow-cyan: 0 0 16px rgba(0,153,187,0.15);
+}
+
+/* ── Base ─────────────────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  font-family: var(--font-body), 'DM Sans', sans-serif;
+  background-color: var(--bg-base);
+  color: var(--text-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  min-height: 100vh;
+}
+
+/* ── Scrollbar personalizada ──────────────────────────────────────────── */
+::-webkit-scrollbar       { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: var(--bg-surface); }
+::-webkit-scrollbar-thumb { background: var(--bg-elevated); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-muted); }
+
+/* ── Utilidades de componentes ────────────────────────────────────────── */
+@layer components {
+
+  /* Tarjeta base */
+  .card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    box-shadow: var(--shadow-card);
+    transition: box-shadow 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+  }
+  .card:hover {
+    box-shadow: var(--shadow-hover);
+    border-color: var(--border-accent);
+  }
+
+  /* Tarjeta clicable */
+  .card-clickable {
+    @apply card cursor-pointer;
+  }
+  .card-clickable:hover {
+    transform: translateY(-2px);
+  }
+  .card-clickable:active {
+    transform: translateY(0);
+  }
+
+  /* Texto display (Orbitron) */
+  .font-display { font-family: var(--font-display), 'Orbitron', monospace; }
+
+  /* Texto mono */
+  .font-mono-custom { font-family: 'JetBrains Mono', monospace; }
+
+  /* Acento glow */
+  .text-accent   { color: var(--accent-cyan); }
+  .text-ember    { color: var(--accent-ember); }
+  .text-muted    { color: var(--text-muted); }
+  .text-secondary{ color: var(--text-secondary); }
+
+  /* Separador sutil */
+  .divider { border-color: var(--border); }
+
+  /* Badge de gap semáforo */
+  .gap-badge-low  { color: var(--gap-low);  }
+  .gap-badge-mid  { color: var(--gap-mid);  }
+  .gap-badge-high { color: var(--gap-high); }
+
+  /* Botón primario */
+  .btn-primary {
+    background: var(--accent-cyan);
+    color: #000;
+    font-family: var(--font-body), 'DM Sans', sans-serif;
+    font-weight: 600;
+    border-radius: 8px;
+    padding: 0.5rem 1.25rem;
+    border: none;
+    cursor: pointer;
+    transition: opacity 0.15s, transform 0.15s;
+  }
+  .btn-primary:hover  { opacity: 0.88; transform: translateY(-1px); }
+  .btn-primary:active { transform: translateY(0); }
+
+  /* Botón secundario / ghost */
+  .btn-ghost {
+    background: transparent;
+    color: var(--text-secondary);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 0.5rem 1.25rem;
+    cursor: pointer;
+    transition: border-color 0.15s, color 0.15s;
+  }
+  .btn-ghost:hover {
+    border-color: var(--accent-cyan);
+    color: var(--accent-cyan);
+  }
+
+  /* Skeleton loader */
+  .skeleton {
+    background: linear-gradient(
+      90deg,
+      var(--bg-card) 25%,
+      var(--bg-elevated) 50%,
+      var(--bg-card) 75%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 1.6s linear infinite;
+    border-radius: 6px;
+  }
+
+  /* Input/Select base */
+  .field {
+    background: var(--bg-elevated);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    color: var(--text-primary);
+    padding: 0.45rem 0.75rem;
+    font-family: var(--font-body), 'DM Sans', sans-serif;
+    font-size: 0.9rem;
+    outline: none;
+    transition: border-color 0.15s;
+  }
+  .field:focus { border-color: var(--accent-cyan); }
+}
+
+/* ── Animaciones de entrada ───────────────────────────────────────────── */
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes number-pop {
+  0%   { transform: scale(0.75); opacity: 0; }
+  65%  { transform: scale(1.08); }
+  100% { transform: scale(1);    opacity: 1; }
+}
+@keyframes shimmer {
+  from { background-position: -200% 0; }
+  to   { background-position:  200% 0; }
+}
+@keyframes pulse-ring {
+  0%   { box-shadow: 0 0 0 0   rgba(0,229,255,0.4); }
+  70%  { box-shadow: 0 0 0 10px rgba(0,229,255,0);   }
+  100% { box-shadow: 0 0 0 0   rgba(0,229,255,0);   }
+}
+
+.animate-fade-up    { animation: fade-up    0.4s ease forwards; }
+.animate-number-pop { animation: number-pop 0.35s cubic-bezier(.34,1.56,.64,1) forwards; }
+.animate-pulse-ring { animation: pulse-ring 1.8s ease-out infinite; }
