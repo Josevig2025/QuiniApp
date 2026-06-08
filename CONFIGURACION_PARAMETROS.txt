@@ -1,0 +1,236 @@
+# QuiniApp — Parámetros de Inicio por Pantalla
+# ================================================
+# Este archivo documenta DÓNDE y CÓMO cambiar cada valor por defecto.
+# Todos los valores son los que se muestran al abrir cada pantalla.
+# Modificá el archivo indicado y Vite recarga solo (no hace falta reiniciar).
+
+# ─────────────────────────────────────────────────────────────────────
+# FILTROS GLOBALES DE QUINIELA
+# Archivo: frontend/src/hooks/useQuiniela.js
+# ─────────────────────────────────────────────────────────────────────
+
+CIFRAS_DEFAULT = 2
+# Valores posibles: 1 | 2 | 3
+# Línea: useState(2)   →   cambiá el 2 por 1 o 3
+
+HASTA_DEFAULT = 20
+# Cuántos premios considerar (1 = solo primer premio, 20 = todos)
+# Valores posibles: 1 a 20
+# Línea: useState(20)
+
+RANGO_DEFAULT = 'todo'
+# Período por defecto al entrar
+# Valores: 'todo' | 'anio' | 'mes' | 'n' | 'custom'
+# Línea: useState('todo')
+
+ULTIMOS_N_DEFAULT = 300
+# Solo aplica cuando RANGO = 'n'. Cantidad de sorteos.
+# Línea: useState(300)
+
+
+# ─────────────────────────────────────────────────────────────────────
+# QUINIELA MAIN (pantalla principal)
+# Archivo: frontend/src/pages/quiniela/QuinielaMain.jsx
+# ─────────────────────────────────────────────────────────────────────
+
+# Cantidad de números en cada columna del grid
+# Línea: items.slice(0, 20)  →  cambiá el 20 por la cantidad que querés
+COLUMNA_NUMEROS = 20
+
+# Cantidad de rankings que se cargan en paralelo (actualmente 4)
+# Se cargan: Atrasados, Salidores, En Racha, Regulares
+# Para agregar o quitar columnas, editá el Promise.all y el grid de <ColNumeros>
+
+# Mensaje rotativo de juego responsable
+# Línea: const MENSAJES = [...]  al inicio del archivo
+# Agregar, quitar o editar mensajes en el array
+
+
+# ─────────────────────────────────────────────────────────────────────
+# ESTADÍSTICAS
+# Archivo: frontend/src/pages/quiniela/Estadisticas.jsx
+# ─────────────────────────────────────────────────────────────────────
+
+TAB_INICIAL_ESTADISTICAS = 'atrasados'
+# Valores: 'atrasados' | 'salidores' | 'gaps_cortos' | 'racha' | 'lideres'
+# Línea: useState('atrasados')
+
+TOP_INICIAL_ESTADISTICAS = 50
+# Cuántos números mostrar por defecto
+# Línea: useState(50)
+
+
+# ─────────────────────────────────────────────────────────────────────
+# ANÁLISIS DE NÚMERO
+# Archivo: frontend/src/pages/quiniela/AnalisisNumero.jsx
+# ─────────────────────────────────────────────────────────────────────
+
+# Los filtros (cifras, hasta, rango) los hereda del hook useFiltersQuiniela
+# Ver sección FILTROS GLOBALES arriba para cambiarlos
+
+# Cantidad de últimas apariciones mostradas en la tabla
+# Línea: data.ultimas_apariciones.slice()   →   agregá .slice(0, N) para limitar
+
+
+# ─────────────────────────────────────────────────────────────────────
+# LABORATORIO / BACKTEST
+# Archivo: frontend/src/pages/quiniela/Laboratorio.jsx
+# ─────────────────────────────────────────────────────────────────────
+
+TAB_INICIAL_LABORATORIO = 'backtest'
+# Valores: 'backtest' | 'sugeridas'
+# Línea: useState('backtest')
+
+APUESTA_DEFAULT = 100
+# Monto de apuesta por defecto en el backtest
+# Línea: useState(100)
+
+VENTANA_SUGERIDAS_DEFAULT = 300
+# Cuántos sorteos recientes considerar para las sugeridas
+# Línea: useState(300)  (en el sub-componente de sugeridas)
+
+TOP_SUGERIDAS_DEFAULT = 10
+# Cantidad de candidatos a mostrar
+# Línea: useState(10)
+
+
+# ─────────────────────────────────────────────────────────────────────
+# TÓMBOLA MAIN
+# Archivo: frontend/src/pages/tombola/TombolaMain.jsx
+# ─────────────────────────────────────────────────────────────────────
+
+K_DEFAULT_TOMBOLA = 3
+# Modalidad por defecto al entrar (cantidad de números)
+# Valores: 3 | 4 | 5 | 6 | 7
+# Línea: useState(5)  →  cambiá por useState(3)
+
+MODO_DEFAULT_TOMBOLA = 'frecuencia'
+# Modo de ranking por defecto
+# Valores: 'atrasos' | 'frecuencia' | 'score'
+# Línea: useState('atrasos')  →  cambiá por useState('frecuencia')
+
+TAB_INICIAL_TOMBOLA = 'ranking'
+# Valores: 'ranking' | 'laboratorio'
+# Línea: useState('ranking')
+
+
+# ─────────────────────────────────────────────────────────────────────
+# REDOBLONA MAIN
+# Archivo: frontend/src/pages/redoblona/RedoblonaMain.jsx
+# ─────────────────────────────────────────────────────────────────────
+
+CIFRAS_DEFAULT_REDOBLONA = 2
+# Línea: useState(2)  — primera línea del componente
+
+R1_DEFAULT = 5
+# Rango de premios para el primer número
+# Línea: useState(5)  →  valores: 1 a 20
+
+R2_DEFAULT = 5
+# Rango de premios para el segundo número
+# Línea: useState(5)
+
+TAB_INICIAL_REDOBLONA = 'ranking'
+# Valores: 'ranking' | 'analizar' | 'sugeridas'
+# Línea: useState('ranking')
+
+
+# ─────────────────────────────────────────────────────────────────────
+# TEMA / APARIENCIA
+# Archivo: frontend/src/context/ThemeContext.jsx
+# ─────────────────────────────────────────────────────────────────────
+
+TEMA_DEFAULT = 'dark'
+# Valores: 'dark' | 'light'
+# Línea: localStorage.getItem('quiniapp-theme') || 'dark'
+# Cambiá 'dark' por 'light' para que arranque en modo claro
+# (el usuario puede cambiarlo con el toggle — se guarda en el navegador)
+
+
+# ─────────────────────────────────────────────────────────────────────
+# COLORES DE SEMÁFORO DE GAPS
+# Archivo: frontend/src/index.css  (variables CSS)
+# ─────────────────────────────────────────────────────────────────────
+
+GAP_LOW_UMBRAL  = 20
+# Gap <= 20  →  verde  #22C55E
+# Buscar en los componentes: 'gap_actual <= 20'
+
+GAP_MID_UMBRAL  = 100
+# Gap <= 100 →  ámbar  #F59E0B
+# Buscar en los componentes: 'gap_actual <= 100'
+
+# Gap > 100  →  rojo   #EF4444
+
+# Para cambiar los umbrales, buscar en estos archivos:
+#   - components/ui/GapBadge.jsx
+#   - components/quiniela/NumberCard.jsx
+#   - components/quiniela/ChartGaps.jsx
+#   - pages/quiniela/QuinielaMain.jsx  (ColNumeros)
+
+
+# ─────────────────────────────────────────────────────────────────────
+# DATASETS
+# Archivo: backend/main.py
+# ─────────────────────────────────────────────────────────────────────
+
+# QUINIELA_DATASET = os.path.join(BASE_DIR, "data", "quiniela.txt")
+# TOMBOLA_DATASET  = os.path.join(BASE_DIR, "data", "tombola.xlsx")
+#
+# Si los archivos tienen otro nombre o están en otra ruta,
+# cambiá las variables QUINIELA_DATASET y TOMBOLA_DATASET en main.py
+
+
+# ─────────────────────────────────────────────────────────────────────
+# TIPOGRAFÍAS
+# Archivo: frontend/src/context/ConfigContext.jsx
+# ─────────────────────────────────────────────────────────────────────
+
+# Para agregar una nueva tipografía, agregá una entrada al objeto TIPOGRAFIAS:
+#
+# nueva: {
+#   id:      'nueva',
+#   label:   'Nombre visible',
+#   sub:     'Descripción corta',
+#   display: '"NombreFuente", sans-serif',   ← fuente para números/títulos
+#   body:    '"OtraFuente", sans-serif',     ← fuente para texto general
+#   google:  'NombreFuente:wght@400;600;700' ← parámetro para Google Fonts URL
+# }
+#
+# La fuente se carga automáticamente de Google Fonts la primera vez que se selecciona.
+# Si querés una fuente local, agregá el @font-face en index.css y dejá google: null
+
+# Tipografía por defecto al primer inicio (si no hay nada en localStorage):
+# Línea: const DEFAULT_TIPOGRAFIA = 'techno'
+# Valores: 'techno' | 'legible' | 'mixta'
+
+DEFAULT_TIPOGRAFIA = 'techno'
+
+
+# ─────────────────────────────────────────────────────────────────────
+# PALETAS DE COLOR
+# Archivo: frontend/src/context/ConfigContext.jsx
+# ─────────────────────────────────────────────────────────────────────
+
+# Para agregar una nueva paleta, agregá una entrada al objeto PALETAS:
+#
+# nueva: {
+#   id:      'nueva',
+#   label:   'Nombre visible',
+#   sub:     'Descripción',
+#   preview: ['#COLOR1', '#COLOR2', '#FONDO'],   ← 3 círculos de preview
+#   vars: {
+#     '--accent-cyan':      '#COLOR_PRINCIPAL',   ← acento principal (links, badges activos)
+#     '--accent-cyan-dim':  '#COLOR_ATENUADO',    ← versión más oscura del principal
+#     '--accent-ember':     '#COLOR_SECUNDARIO',  ← acento secundario (alertas, hot)
+#     '--accent-ember-dim': '#COLOR_EMBER_DIM',
+#     '--accent-cyan-light':  '#PARA_MODO_CLARO', ← versión para light mode
+#     '--accent-ember-light': '#EMBER_LIGHT',
+#   }
+# }
+
+# Paleta por defecto al primer inicio:
+# Línea: const DEFAULT_PALETA = 'cyan'
+# Valores: 'cyan' | 'esmeralda' | 'violeta'
+
+DEFAULT_PALETA = 'cyan'

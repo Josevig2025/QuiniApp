@@ -1,0 +1,83 @@
+backend
+
+    data
+        pagos redoblona.ods
+
+        quiniela.txt
+
+        tombola.xlsx
+
+    engines
+
+        motor_quiniela.py
+
+        motor_redoblona.py
+
+        motor_tombola.py
+
+    routers
+
+        quiniela.py
+
+        redoblona.py
+
+        tombola.py
+
+    main.py
+
+    requirements.txt
+
+
+frontend
+        src
+                api
+
+                    quiniela.js
+
+                    redoblona.js
+
+                    tombola.js
+                
+                components
+
+                    quiniela
+
+                    tombola
+
+                    ui
+                
+                context
+
+                    ConfigContext.jsx
+
+                    QuinielaContext.jsx
+
+
+                    ThemeContext.jsx
+                
+                hooks
+
+                    useQuiniela.js
+                
+                pages
+
+
+                    quiniela
+
+                    redoblona
+
+                    tombola
+
+                    Configuracion.jsx
+
+                    Home.jsx
+
+                    Placeholder.jsx
+                
+                App.jsx
+                
+                index.css
+                
+                main.jsx
+
+run.py
