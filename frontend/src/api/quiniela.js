@@ -6,7 +6,8 @@
 import axios from 'axios'
 
 const BACKEND = import.meta.env.VITE_API_URL || ''
-const BASE = `${BACKEND}/api/quiniela`
+const BASE = 'https://quiniapp-2.onrender.com/quiniela'
+
 
 
 /** Construye los parámetros de filtro temporal en formato query */

@@ -5,7 +5,8 @@
 import axios from 'axios'
 
 const BACKEND = import.meta.env.VITE_API_URL || ''
-const BASE = `${BACKEND}/api/redoblona`
+const BASE = 'https://quiniapp-2.onrender.com/redoblona'
+
 
 export const getAnalizar = (n1, r1, n2, r2, cifras, params = {}) =>
   axios.get(`${BASE}/analizar`, { params: { n1, r1, n2, r2, cifras, ...params } })
