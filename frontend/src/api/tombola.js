@@ -5,7 +5,8 @@
  */
 import axios from 'axios'
 
-const BASE = '/api/tombola'
+const BACKEND = import.meta.env.VITE_API_URL || ''
+const BASE = `${BACKEND}/api/tombola`
 
 // Construir params de filtro temporal
 function filtroParams(filtros = {}) {

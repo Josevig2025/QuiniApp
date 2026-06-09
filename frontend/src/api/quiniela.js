@@ -5,7 +5,9 @@
  */
 import axios from 'axios'
 
-const BASE = '/api/quiniela'
+const BACKEND = import.meta.env.VITE_API_URL || ''
+const BASE = `${BACKEND}/api/quiniela`
+
 
 /** Construye los parámetros de filtro temporal en formato query */
 function filtroParams(filtros = {}) {
